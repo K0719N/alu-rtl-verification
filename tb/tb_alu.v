@@ -1,0 +1,20 @@
+`timescale 1ns/1ps
+module tb_alu;
+    reg  [7:0] a, b;
+    wire [7:0] result;
+
+    alu dut (.a(a), .b(b), .result(result)); // test edilen modul
+
+    initial begin
+        $dumpfile("alu.vcd");     // waveform dosyasi
+        $dumpvars(0, tb_alu);
+
+        a = 8'd3;   b = 8'd5;   #10;
+        $display("a=%d b=%d result=%d", a, b, result);
+
+        a = 8'd200; b = 8'd100; #10;
+        $display("a=%d b=%d result=%d", a, b, result);
+
+        $finish;
+    end
+endmodule
